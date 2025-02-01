@@ -1,27 +1,10 @@
 from fastapi import APIRouter, Request
 from fastapi.templating import Jinja2Templates
 from fastapi.responses import HTMLResponse
+from tools import Tools
 
 router = APIRouter()
 templates = Jinja2Templates(directory="app/templates")
-
-tools = [
-    {"id": 1, "tool": "Ansible", "url": "https://ansible.com"},
-    {
-        "id": 2,
-        "tool": "Nexus",
-        "url": "https://www.sonatype.com/products/sonatype-nexus-repository",
-    },
-    {
-        "id": 3,
-        "tool": "Bitbucket",
-        "url": "https://bitbucket.com"
-    },
-    {
-        "id": 4,
-        "tool": "SonarQube","url": "https://sonarqube.com"
-    },
-]
 
 
 @router.get("/", response_class=HTMLResponse)
@@ -31,6 +14,7 @@ async def route_index(request: Request):
     :param request:
     :return: Generated page on the template 'index.html'
     """
+    tools = Tools("resources/tools.json").get_entities()
     return templates.TemplateResponse(
         "index.html", {"request": request, "tools": tools}
     )

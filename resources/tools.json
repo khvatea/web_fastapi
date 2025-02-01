@@ -1,0 +1,32 @@
+[
+    {
+        "id": 1,
+        "tool": "Ansible",
+        "url": "https://ansible.com"
+    },
+    {
+        "id": 2,
+        "tool": "Nexus",
+        "url": "https://www.sonatype.com/products/sonatype-nexus-repository"
+    },
+    {
+        "id": 3,
+        "tool": "Bitbucket",
+        "url": "https://bitbucket.com"
+    },
+    {
+        "id": 4,
+        "tool": "SonarQube",
+        "url": "https://sonarqube.com"
+    },
+    {
+        "id": 5,
+        "tool": "GitLab",
+        "url": "https://gitlab.ru"
+    },
+    {
+        "id": 6,
+        "tool": "Jenkins",
+        "url": "https://jenkins.ru"
+    }
+]

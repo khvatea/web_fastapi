@@ -1,11 +1,17 @@
 import json
-import pathlib
-
 from schemas import ToolsModel
 
 
 class Tools:
+    """
+    Class for working with json records CI/CD tools
+    """
+
     def __init__(self, file: str):
+        """
+        Initialization of the Tools object
+        :param file: The path to the JSON-file with a description of the tools
+        """
         self.file = file
 
     def get_entities(self) -> list:
@@ -26,6 +32,11 @@ class Tools:
         return tools
 
     def get_entity(self, item_id: int) -> dict:
+        """
+        Get an entity from a common list of tools
+        :param item_id: ID entity
+        :return: All properties of entity
+        """
         tools = self.get_entities()
 
         for i, tool in enumerate(tools):
@@ -33,6 +44,11 @@ class Tools:
                 return tools[i]
 
     def add_entity(self, new_item: ToolsModel) -> int:
+        """
+        Add an entry to the CI/CD list
+        :param new_item: Properties of entity
+        :return: 1 - there is duplication. 0 - Record is added successfully
+        """
         tools = self.get_entities()
 
         for tool in tools:

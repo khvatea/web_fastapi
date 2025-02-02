@@ -2,7 +2,8 @@ from fastapi import APIRouter
 from fastapi.templating import Jinja2Templates
 from fastapi.responses import JSONResponse
 from tools import Tools
-from schemas import ToolsModel
+from config.schemas import ToolsModel
+from config import env
 
 router = APIRouter(tags=["api"])
 templates = Jinja2Templates(directory="app/templates")
@@ -23,7 +24,7 @@ async def entities():
     Obtaining a CI/CD list
     :return: CI/CD list in json
     """
-    tools = Tools("resources/tools.json").get_entities()
+    tools = Tools(env.JSON_DB_PATH).get_entities()
     return {"tools": tools}
 
 
@@ -42,7 +43,7 @@ async def entity(item_id: int):
     :param item_id: ID records
     :return: Status and description of the element in JSON format
     """
-    tool = Tools("resources/tools.json").get_entity(item_id)
+    tool = Tools(env.JSON_DB_PATH).get_entity(item_id)
     if tool:
         return {"status": "success", "item": tool}
 
@@ -67,12 +68,15 @@ async def add_entity(item: ToolsModel):
     :param item: Object according to the Toolsmodel scheme
     :return: The status of an operation performed
     """
-    if Tools("resources/tools.json").add_entity(item) == 0:
-        return {
-            "status": "success",
-            "message": "Элемент успешно добавлен",
-            "item": item,
-        }
+    if Tools(env.JSON_DB_PATH).add_entity(item) == 0:
+        return JSONResponse(
+            content={
+                "status": "success",
+                "message": "Элемент успешно добавлен",
+                "item": item.model_dump(),
+            },
+            status_code=201,
+        )
     else:
         return JSONResponse(
             content={"status": "failed", "message": "ID дублирован"},

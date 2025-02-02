@@ -1,5 +1,5 @@
 import json
-from schemas import ToolsModel
+from config.schemas import ToolsModel
 
 
 class Tools:

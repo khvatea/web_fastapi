@@ -1,0 +1,1 @@
+JSON_DB_PATH = 'resources/tools.json'

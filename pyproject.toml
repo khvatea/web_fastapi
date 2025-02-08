@@ -1,0 +1,27 @@
+[project]
+name = "web-fastapi"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "Khvat Evgeniy"}
+]
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi (>=0.115.8,<0.116.0)",
+    "jinja2 (>=3.1.5,<4.0.0)",
+    "uvicorn (>=0.34.0,<0.35.0)"
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.3.4"
+pytest-cov = "^6.0.0"
+fastapi = "^0.115.8"
+jinja2 = "^3.1.5"
+uvicorn = "^0.34.0"
+

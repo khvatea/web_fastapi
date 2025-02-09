@@ -82,3 +82,16 @@ async def add_entity(item: ToolsModel):
             content={"status": "failed", "message": "ID дублирован"},
             status_code=422,
         )
+
+
+@router.get(
+    "/ping",
+    response_class=JSONResponse,
+    summary="Healthcheck",
+    description="Выполняет функцию проверки доступности сервиса (healthchek)",
+)
+async def ping():
+    return JSONResponse(
+        content={"message": "pong"},
+        status_code=200,
+    )

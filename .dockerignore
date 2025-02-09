@@ -1,0 +1,10 @@
+tests
+pytest.ini
+
+__pycache__
+
+.git
+.gitignore
+
+.dockerignore
+Dockerfile
